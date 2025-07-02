@@ -1,0 +1,36 @@
+.container {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.7rem 2.2rem 0.7rem 2.2rem;
+  background: transparent;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.left p {
+  font-size: 16px;
+  color: var(--footer-text-color);
+  line-height: 1.4;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.socials img {
+  width: 27px;
+  height: 27px;
+  opacity: 0.85;
+  transition: transform 0.14s, opacity 0.13s, filter 0.14s;
+  filter: grayscale(30%);
+}
+
+.socials img:hover {
+  transform: scale(1.13) rotate(-8deg);
+  opacity: 1;
+  filter: none;
+}

@@ -1,0 +1,116 @@
+.bg {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background-color);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.themeSwitch {
+  position: fixed;
+  top: 1.5rem;
+  right: 2.2rem;
+  z-index: 10;
+}
+
+.themeIcon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.themeIcon:hover {
+  transform: scale(1.13);
+}
+
+.form {
+  background: rgba(60, 60, 60, 0.445);
+  margin: 0 auto 0 auto;
+  border-radius: 18px;
+  padding: 2.6rem 2.4rem 2.1rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  max-width: 370px;
+  gap: 1rem;
+  border: 2px solid rgb(90, 90, 90);
+  box-shadow: 0 6px 32px 0 rgba(90, 90, 90, 0.11), 0 0 0 3px rgb(90, 90, 90);
+}
+
+[data-theme="dark"] .form {
+  background: var(--section-bg);
+  border: none;
+  box-shadow: 0 4px 24px 0 rgba(60,60,60,0.20);
+}
+
+h2 {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.65rem;
+  letter-spacing: 1px;
+  margin: 0 0 0.6rem 0;
+  color: var(--text-color);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+input {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.08rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  border: 1.5px solid #8884;
+  background: var(--background-color);
+  color: var(--text-color);
+  margin-bottom: 0.1rem;
+}
+
+input:focus {
+  outline: 2px solid var(--btn-color);
+}
+
+.loginBtn {
+  background: var(--btn-color);
+  color: var(--btn-text-color);
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 0;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin-top: 0.3rem;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.15s;
+}
+.loginBtn:hover {
+  background: #43a047;
+  color: #fff;
+  transform: scale(1.04);
+}
+
+.error {
+  color: #e53935;
+  font-size: 1rem;
+  margin: 0.2rem 0 0.3rem 0;
+}
+
+.registerHint {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--text-color);
+  font-family: "Roboto Mono", monospace;
+  font-size: 1rem;
+}
+.registerLink {
+  color: var(--btn-color);
+  margin-left: 0.35rem;
+  text-decoration: underline;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.registerLink:hover {
+  color: #43a047;
+}
