@@ -1,0 +1,124 @@
+.pageContainer {
+  max-width: 700px;
+  margin: 48px auto 0 auto;
+  padding: 32px;
+  background: var(--main-box-bg);
+  border-radius: 2rem;
+  box-shadow: 0 20px 100px 0 rgb(30, 40, 40);
+  transition: background 0.22s;
+}
+
+[data-theme="dark"] .pageContainer {
+  background: #303030;
+}
+
+.heading {
+  font-family: "Rubik", sans-serif;
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: var(--text-color);
+  margin-bottom: 28px;
+  letter-spacing: 1.5px;
+}
+
+.formRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.newCheckInput {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.3rem;
+  padding: 0.7rem 1.3rem;
+  border: 1.5px solid #bbb;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--text-color);
+  flex: 1;
+  min-width: 180px;
+  transition: border 0.17s, box-shadow 0.17s;
+}
+
+.newCheckInput:focus {
+  outline: none;
+  border-color: #b3c7c7;
+  box-shadow: 0 0 6px 1px #bdd8d8;
+}
+
+.addBtn {
+  background: var(--btn-color);
+  color: var(--btn-text-color);
+  border: none;
+  border-radius: 14px;
+  padding: 0.7rem 1.8rem;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: background 0.18s, color 0.18s, transform 0.14s;
+  cursor: pointer;
+  box-shadow: 0 1px 8px 0 rgba(80, 80, 80, 0.07);
+}
+
+.addBtn:hover {
+  background: #6b705c;
+  color: #fff;
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* Liste */
+.checkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.checkItem {
+  background: var(--btn-color);
+  border-radius: 16px;
+  box-shadow: 0 3px 15px 0 rgba(80, 80, 80, 0.13);
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+  transition: box-shadow 0.17s, transform 0.17s;
+  /* Make the container take the full width for clickable link */
+}
+
+.checkItem:hover {
+  box-shadow: 0 6px 24px 0 rgba(80, 80, 80, 0.19);
+  transform: translateY(-1px) scale(1.01);
+}
+
+.checkLink {
+  display: block;
+  width: 100%;
+  padding: 1.15rem 1.6rem;
+  font-size: 1.17rem;
+  font-weight: 600;
+  color: var(--btn-text-color);
+  text-decoration: none;
+  border-radius: 16px;
+  transition: color 0.16s, background 0.16s;
+}
+
+.checkLink:hover,
+.checkLink:focus {
+  color: #fff;
+  text-decoration: underline;
+  background: #6b705c;
+}
+
+[data-theme="dark"] .checkLink {
+  color: #222 !important; /* schwarz wie alle Button-Texte im Darkmode */
+}
+
+[data-theme="dark"] .checkLink:hover,
+[data-theme="dark"] .checkLink:focus {
+  color: #fff !important;
+  background: #6b705c;
+}

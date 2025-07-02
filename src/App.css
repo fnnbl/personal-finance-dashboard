@@ -10,6 +10,7 @@
   --footer-text-color: #888;
   --navlinks-bg: #e3f2fd;
   --navlinks-border: #b0bec5;
+  --main-box-bg: #fff;
 }
 
 [data-theme="dark"] {
@@ -24,6 +25,7 @@
   --footer-text-color: #bbb;
   --navlinks-bg: #263238;
   --navlinks-border: #37474f;
+  --main-box-bg: #323232;
 }
 
 body {
