@@ -57,3 +57,13 @@ export async function deleteExpense(id) {
   if (error) throw error;
   return true;
 }
+
+export async function getExpenseSumByFinanceCheck(checkId) {
+  const { data, error } = await supabase
+    .from("expenses_sum_by_check")
+    .select("sum")
+    .eq("check_id", checkId)
+    .single();
+  if (error) throw error;
+  return data?.sum ?? 0;
+}

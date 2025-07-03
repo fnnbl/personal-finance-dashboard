@@ -53,3 +53,13 @@ export async function deleteIncome(id) {
   if (error) throw error;
   return true;
 }
+
+export async function getIncomeSumByFinanceCheck(checkId) {
+  const { data, error } = await supabase
+    .from("incomes_sum_by_check")
+    .select("sum")
+    .eq("check_id", checkId)
+    .single();
+  if (error) throw error;
+  return data?.sum ?? 0;
+}
