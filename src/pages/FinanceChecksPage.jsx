@@ -32,7 +32,7 @@ function FinanceChecksPage() {
     <div className={styles.pageContainer}>
       <div className={styles.headingRow}>
         <h1 className={styles.heading}>Meine Einnahmen & Ausgaben-Checks</h1>
-        <button className={styles.addBtn} onClick={handleCreateClick}>
+        <button className="btn" onClick={handleCreateClick}>
           Neu anlegen
         </button>
       </div>

@@ -52,7 +52,7 @@ function FinanceCheckCreatePage() {
             disabled={loading}
           />
         </label>
-        <button type="submit" disabled={loading || !name}>
+        <button type="submit" className="btn" disabled={loading || !name}>
           {loading ? "Speichere..." : "Anlegen"}
         </button>
         {error && <div style={{ color: "red", marginTop: 12 }}>{error}</div>}

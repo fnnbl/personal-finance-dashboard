@@ -1,0 +1,85 @@
+.detailContainer {
+  max-width: 750px;
+  margin: 42px auto 0 auto;
+  background: var(--main-box-bg);
+  border-radius: 1.6rem;
+  box-shadow: 0 12px 60px 0 rgb(40 50 50 / 60%);
+  padding: 40px 48px 36px 48px;
+}
+
+.heading {
+  font-family: "Rubik", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+
+.subheading {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 30px 0 10px 0;
+  color: var(--text-color);
+  letter-spacing: 1px;
+}
+
+.financeCheckName {
+  font-size: 1.3rem;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.list {
+  padding-left: 18px;
+  margin-bottom: 8px;
+}
+
+.sumRow {
+  font-family: "Roboto Mono", monospace;
+  margin: 14px 0 4px 0;
+  font-size: 1.08rem;
+}
+
+.balanceBox {
+  margin-top: 34px;
+}
+
+.balance {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.34rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.balanceValue {
+  color: #2e7d32;
+  font-size: 1.22rem;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 700;
+}
+.deficit {
+  color: #d32f2f;
+}
+
+/* Button-Styling */
+.actionBtn {
+  margin-left: 16px;
+  background: var(--btn-color);
+  color: var(--btn-text-color);
+  border: none;
+  border-radius: 10px;
+  padding: 6px 18px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s, transform 0.14s;
+  box-shadow: 0 1px 8px 0 rgba(80, 80, 80, 0.06);
+}
+.actionBtn:hover {
+  background: #6b705c;
+  color: #fff;
+  transform: translateY(-1px) scale(1.01);
+}
