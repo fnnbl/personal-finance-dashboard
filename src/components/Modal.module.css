@@ -1,0 +1,147 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: var(--main-box-bg);
+  color: var(--text-color);
+  padding: 32px 36px 24px 36px;
+  border-radius: 20px;
+  box-shadow: 0 16px 60px 0 rgba(20, 20, 20, 0.28);
+  min-width: 350px;
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  font-size: 28px;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.18s;
+}
+.closeBtn:hover {
+  color: #d32f2f;
+}
+
+/* Modal-Überschrift */
+.modal h3,
+.modal .modalTitle {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  text-align: left;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Modal Inputs und Selects */
+.modal input,
+.modal select,
+.modal textarea {
+  width: 100%;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.09rem;
+  padding: 0.8rem 1.1rem;
+  border-radius: 14px;
+  border: 1.5px solid #bbb;
+  background: var(--input-bg);
+  color: var(--text-color);
+  margin-bottom: 0.1rem;
+  box-shadow: none;
+  transition: border-color 0.13s, box-shadow 0.13s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus {
+  border-color: #6b705c;
+  outline: none;
+}
+
+[data-theme="dark"] .modal input,
+[data-theme="dark"] .modal select,
+[data-theme="dark"] .modal textarea {
+  border: 1.5px solid #555;
+  background: #222;
+  color: #fff;
+}
+
+.modal select:focus-visible,
+.modal select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.modal select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+}
+
+/* Button im Modal */
+.modal button,
+.modal .btn {
+  margin-top: 16px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  padding: 0.7rem 1.7rem;
+  cursor: pointer;
+  box-shadow: 0 1px 8px 0 rgba(80, 80, 80, 0.07);
+  background: var(--btn-color);
+  color: var(--btn-text-color);
+  transition: background 0.18s, color 0.18s, transform 0.14s;
+  outline: none;
+}
+
+.modal button:hover,
+.modal .btn:hover,
+.modal button:focus,
+.modal .btn:focus {
+  background: #6b705c;
+  color: #fff;
+  outline: none;
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* Fehlertext */
+.modal .error {
+  color: #e53935;
+  font-size: 1rem;
+  margin: 0.2rem 0 0.3rem 0;
+}
+
+/* Responsive Modal */
+@media (max-width: 600px) {
+  .modal {
+    min-width: unset;
+    width: 96vw;
+    padding: 18px 6px 16px 6px;
+  }
+}

@@ -16,7 +16,7 @@ function Navbar({ onLogout, onThemeToggle, theme }) {
       <div className={styles.center}>
         <div className={styles.navLinks}>
           <NavLink
-            to="/finance-checks" // <-- das muss exakt zur Route passen!
+            to="/finance-checks"
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
@@ -33,7 +33,7 @@ function Navbar({ onLogout, onThemeToggle, theme }) {
           alt="Theme switch"
           onClick={onThemeToggle}
         />
-        <button className={styles.logoutBtn} onClick={onLogout}>
+        <button className="btn" onClick={onLogout}>
           Logout
         </button>
       </div>

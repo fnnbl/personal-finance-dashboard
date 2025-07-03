@@ -10,6 +10,8 @@
   --footer-text-color: #888;
   --navlinks-bg: #e3f2fd;
   --navlinks-border: #b0bec5;
+  --main-box-bg: #fff;
+  --input-bg: #fff;
 }
 
 [data-theme="dark"] {
@@ -24,10 +26,12 @@
   --footer-text-color: #bbb;
   --navlinks-bg: #263238;
   --navlinks-border: #37474f;
+  --main-box-bg: #323232;
+  --input-bg: #242424;
 }
 
 body {
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   background-color: var(--background-color);
   color: var(--text-color);
   margin: 0 auto 60px;
@@ -41,8 +45,10 @@ body {
   gap: 60px;
 }
 
-h1, h2, h3 {
-  font-family: 'Rubik', sans-serif;
+h1,
+h2,
+h3 {
+  font-family: "Rubik", sans-serif;
   text-transform: uppercase;
   color: var(--text-color);
   margin: 0;
@@ -55,12 +61,19 @@ h1 {
   font-size: 32px;
 }
 
-h2, h3 {
+h2,
+h3 {
   font-size: 20px;
 }
 
-p, td, th, label, input, button, span {
-  font-family: 'Roboto Mono', monospace;
+p,
+td,
+th,
+label,
+input,
+button,
+span {
+  font-family: "Roboto Mono", monospace;
   color: var(--text-color);
   font-size: 16px;
   font-weight: 400;
@@ -79,16 +92,75 @@ p {
   cursor: pointer;
 }
 
+/* Einheitliche Button-Styles */
+.btn {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 14px;
+  padding: 0.7rem 1.7rem;
+  cursor: pointer;
+  box-shadow: 0 1px 8px 0 rgba(80, 80, 80, 0.07);
+  background: #222; /* Lightmode: schwarz */
+  color: #fff;
+  transition: background 0.18s, color 0.18s, transform 0.14s;
+}
+
+.btn:hover,
+.btn:focus {
+  background: #6b705c; /* grün wie gewünscht */
+  color: #fff;
+  outline: none;
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* Darkmode: Buttons Weiß, Schrift Schwarz */
+[data-theme="dark"] .btn {
+  background: #fff;
+  color: #222;
+}
+
+[data-theme="dark"] .btn:hover,
+[data-theme="dark"] .btn:focus {
+  background: #6b705c;
+  color: #fff;
+}
+
+/* Responsive Anpassungen */
 @media (width >= 800px) {
-  #root { gap: 100px; }
-  h1 { font-size: 40px; }
-  h2, h3 { font-size: 24px; }
-  p, td, th, label, input, button, span { font-size: 20px; }
-  .sectionTitle { margin-bottom: 60px; }
+  #root {
+    gap: 100px;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  h2,
+  h3 {
+    font-size: 24px;
+  }
+  p,
+  td,
+  th,
+  label,
+  input,
+  button,
+  span {
+    font-size: 20px;
+  }
+  .sectionTitle {
+    margin-bottom: 60px;
+  }
 }
 
 @media (width >= 1400px) {
-  #root { gap: 200px; }
-  h1 { font-size: 48px; }
-  .sectionTitle { margin-bottom: 75px; }
+  #root {
+    gap: 200px;
+  }
+  h1 {
+    font-size: 48px;
+  }
+  .sectionTitle {
+    margin-bottom: 75px;
+  }
 }

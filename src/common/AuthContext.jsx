@@ -16,9 +16,11 @@ export function AuthProvider({ children }) {
       setLoading(false);
     });
     // Listener für Login/Logout
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
     return () => {
       listener.subscription.unsubscribe();
     };
@@ -30,8 +32,7 @@ export function AuthProvider({ children }) {
 
   const logout = () => supabase.auth.signOut();
 
-  const signup = (email, password) =>
-    supabase.auth.signUp({ email, password });
+  const signup = (email, password) => supabase.auth.signUp({ email, password });
 
   return (
     <AuthContext.Provider value={{ user, login, logout, signup, loading }}>
