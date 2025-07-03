@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
-import {
-  getFinanceChecksByUser,
-  createFinanceCheck,
-} from "../api/crud/crud_financeCheck";
+import { getFinanceChecksByUser } from "../api/crud/crud_financeCheck";
 import { useAuth } from "../common/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./FinanceChecksPage.module.css";
 
 function FinanceChecksPage() {
   const { user } = useAuth();
   const [checks, setChecks] = useState([]);
-  const [newName, setNewName] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) fetchChecks();
@@ -27,34 +24,18 @@ function FinanceChecksPage() {
     }
   }
 
-  async function handleAddCheck(e) {
-    e.preventDefault();
-    if (!newName.trim()) return;
-    setLoading(true);
-    try {
-      await createFinanceCheck(user.id, newName.trim());
-      setNewName("");
-      fetchChecks();
-    } finally {
-      setLoading(false);
-    }
+  function handleCreateClick() {
+    navigate("/finance-checks/new");
   }
 
   return (
     <div className={styles.pageContainer}>
-      <h1 className={styles.heading}>MEINE E&A-CHECKS</h1>
-      <form className={styles.formRow} onSubmit={handleAddCheck}>
-        <input
-          className={styles.newCheckInput}
-          placeholder="Name für neuen E&A-Check"
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-          disabled={loading}
-        />
-        <button className={styles.addBtn} type="submit" disabled={loading}>
+      <div className={styles.headingRow}>
+        <h1 className={styles.heading}>Meine Einnahmen & Ausgaben-Checks</h1>
+        <button className={styles.addBtn} onClick={handleCreateClick}>
           Neu anlegen
         </button>
-      </form>
+      </div>
       <ul className={styles.checkList}>
         {checks.map((check) => (
           <li key={check.id} className={styles.checkItem}>

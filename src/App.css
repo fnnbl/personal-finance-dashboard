@@ -11,6 +11,7 @@
   --navlinks-bg: #e3f2fd;
   --navlinks-border: #b0bec5;
   --main-box-bg: #fff;
+  --input-bg: #fff;
 }
 
 [data-theme="dark"] {
@@ -26,6 +27,7 @@
   --navlinks-bg: #263238;
   --navlinks-border: #37474f;
   --main-box-bg: #323232;
+  --input-bg: #ffffff;
 }
 
 body {
