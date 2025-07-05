@@ -5,7 +5,6 @@ import { useTheme } from "../common/ThemeContext";
 import sun from "../assets/sun.svg";
 import moon from "../assets/moon.svg";
 import styles from "./LoginPage.module.css";
-import Footer from "../sections/Footer/Footer";
 
 function LoginPage() {
   const { user, login, loading } = useAuth();
@@ -63,7 +62,6 @@ function LoginPage() {
           </div>
         </form>
       </div>
-      <Footer />
     </div>
   );
 }
