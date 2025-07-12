@@ -1,13 +1,10 @@
-html,
-body,
-#root {
+html, body, #root {
   height: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
 }
 
-/* Wichtig für das Layout: Footer immer unten */
 #root,
 #app-wrapper {
   display: flex;
@@ -17,13 +14,12 @@ body,
 }
 
 .app-content {
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   min-height: 0;
+  margin-bottom: 54px;
 }
-
-/* === Restliches Design von dir === */
 
 :root {
   --background-color: #fff;
@@ -39,6 +35,12 @@ body,
   --navlinks-border: #b0bec5;
   --main-box-bg: #fff;
   --input-bg: #fff;
+
+  /* Tabelle/Tabellen-Zeilen */
+  --table-row-bg-light: #f7f7f7;
+  --table-row-bg-dark: #232323;
+  --table-border-light: #222;
+  --table-border-dark: #555;
 }
 
 [data-theme="dark"] {
@@ -55,6 +57,13 @@ body,
   --navlinks-border: #37474f;
   --main-box-bg: #323232;
   --input-bg: #242424;
+  --table-row-bg: var(--table-row-bg-dark);
+  --table-border: var(--table-border-dark);
+}
+
+[data-theme="light"] {
+  --table-row-bg: var(--table-row-bg-light);
+  --table-border: var(--table-border-light);
 }
 
 body {
@@ -62,10 +71,9 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   margin: 0;
-  display: flex;
-  justify-content: center;
 }
 
+/* ...Rest wie gehabt... */
 h1,
 h2,
 h3 {
@@ -81,7 +89,6 @@ h3 {
 h1 {
   font-size: 32px;
 }
-
 h2,
 h3 {
   font-size: 20px;
@@ -100,15 +107,12 @@ span {
   font-weight: 400;
   letter-spacing: 0.01em;
 }
-
 p {
   font-weight: 300;
 }
-
 .sectionTitle {
   margin-bottom: 30px;
 }
-
 .hover {
   cursor: pointer;
 }
@@ -123,14 +127,14 @@ p {
   padding: 0.7rem 1.7rem;
   cursor: pointer;
   box-shadow: 0 1px 8px 0 rgba(80, 80, 80, 0.07);
-  background: #222; /* Lightmode: schwarz */
+  background: #222;
   color: #fff;
   transition: background 0.18s, color 0.18s, transform 0.14s;
 }
 
 .btn:hover,
 .btn:focus {
-  background: #6b705c; /* grün wie gewünscht */
+  background: #6b705c;
   color: #fff;
   outline: none;
   transform: translateY(-1px) scale(1.01);
@@ -141,7 +145,6 @@ p {
   background: #fff;
   color: #222;
 }
-
 [data-theme="dark"] .btn:hover,
 [data-theme="dark"] .btn:focus {
   background: #6b705c;
@@ -173,7 +176,6 @@ p {
     margin-bottom: 60px;
   }
 }
-
 @media (width >= 1400px) {
   #root {
     gap: 200px;

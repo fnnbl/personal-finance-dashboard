@@ -5,7 +5,7 @@ export async function getExpensesByFinanceCheck(financeCheckId) {
   const { data, error } = await supabase
     .from("expenses")
     .select("*")
-    .eq("check_id", financeCheckId); // <-- angepasst
+    .eq("check_id", financeCheckId);
 
   if (error) throw error;
   return data;
@@ -13,23 +13,29 @@ export async function getExpensesByFinanceCheck(financeCheckId) {
 
 // Einzelne Ausgabe anlegen
 export async function createExpense({
-  finance_check_id, // bleibt im Input-Objekt
-  category_id, // id einer Kategorie (siehe DB)
+  finance_check_id,
+  category_id,
   description,
   amount,
   interval,
   note,
 }) {
+  // Hole die User-ID vom aktuellen Supabase User
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   const { data, error } = await supabase
     .from("expenses")
     .insert([
       {
-        check_id: finance_check_id, // <-- Mapping!
-        category: category_id, // <-- Mapping auf Spalte "category"
+        check_id: finance_check_id,
+        category: category_id,
         description,
         amount,
         interval,
         note,
+        user_id: user.id, // <<<<<<<<<<<<<<<<<<<
       },
     ])
     .single();
