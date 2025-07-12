@@ -11,6 +11,7 @@ import {
 import { getFinanceCheckById } from "../api/crud/crud_financeCheck";
 import { getExpenseCategories } from "../api/crud/crud_expenseCategories";
 import Modal from "../components/Modal";
+import styles from "./FinanceCheckDetailPage.module.css";
 
 function FinanceCheckDetailPage() {
   const { checkId } = useParams();
@@ -39,9 +40,9 @@ function FinanceCheckDetailPage() {
     note: "",
   });
 
-  // Initialdaten laden
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [checkId]);
 
   async function fetchData() {
@@ -50,16 +51,19 @@ function FinanceCheckDetailPage() {
     try {
       const checkData = await getFinanceCheckById(checkId);
       setFinanceCheck(checkData);
+
       const incomeData = await getIncomesByFinanceCheck(checkId);
       setIncomes(incomeData);
+
       const expenseData = await getExpensesByFinanceCheck(checkId);
       setExpenses(expenseData);
+
       const catData = await getExpenseCategories();
       setCategories(catData);
-      // Set default Kategorie im Formular
+
       setNewExpense((prev) => ({
         ...prev,
-        category_id: catData[0]?.id || "",
+        category_id: catData && catData.length > 0 ? catData[0].id : "",
       }));
     } catch (err) {
       setError("Fehler beim Laden: " + err.message);
@@ -103,7 +107,8 @@ function FinanceCheckDetailPage() {
       setNewExpense({
         description: "",
         amount: "",
-        category_id: categories[0]?.id || "",
+        category_id:
+          categories && categories.length > 0 ? categories[0].id : "",
         interval: "monatlich",
         note: "",
       });
@@ -115,11 +120,19 @@ function FinanceCheckDetailPage() {
     setLoading(false);
   }
 
+  // Sum helpers
+  const incomeSum = incomes.reduce((acc, item) => acc + Number(item.amount), 0);
+  const expenseSum = expenses.reduce(
+    (acc, item) => acc + Number(item.amount),
+    0
+  );
+  const balance = incomeSum - expenseSum;
+
   return (
-    <div style={{ maxWidth: 800, margin: "30px auto" }}>
-      <h2>Detailansicht</h2>
+    <div className={styles.detailContainer}>
+      <h2 className={styles.heading}>Detailansicht</h2>
       {financeCheck && (
-        <p style={{ fontSize: 24, fontWeight: 700 }}>{financeCheck.name}</p>
+        <p className={styles.financeCheckName}>{financeCheck.name}</p>
       )}
       {loading && <p>Lade Daten ...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
@@ -127,7 +140,7 @@ function FinanceCheckDetailPage() {
       {/* Einnahmen */}
       <div style={{ marginTop: 40 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <h3 style={{ margin: 0 }}>Einnahmen</h3>
+          <h3 className={styles.subheading}>Einnahmen</h3>
           <button
             type="button"
             className="btn"
@@ -136,24 +149,57 @@ function FinanceCheckDetailPage() {
             Neue Einnahme
           </button>
         </div>
-        <ul>
-          {incomes.map((inc) => (
-            <li key={inc.id}>
-              {inc.description} – {inc.amount}€{" "}
-              <span style={{ color: "#888" }}>({inc.interval})</span>
-            </li>
-          ))}
-        </ul>
-        <b>
-          Summe Einnahmen:{" "}
-          {incomes
-            .reduce((acc, item) => acc + Number(item.amount), 0)
-            .toLocaleString("de-DE", { minimumFractionDigits: 2 })}
-          €
-        </b>
+        {/* Tabelle Einnahmen */}
+        <div className={styles.tableWrapper}>
+          <table className={styles.dataTable}>
+            <thead>
+              <tr>
+                <th>Beschreibung</th>
+                <th>Betrag (€)</th>
+                <th>Intervall</th>
+              </tr>
+            </thead>
+            <tbody>
+              {incomes.map((inc) => (
+                <tr key={inc.id}>
+                  <td>{inc.description}</td>
+                  <td>
+                    {Number(inc.amount).toLocaleString("de-DE", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </td>
+                  <td>{inc.interval}</td>
+                </tr>
+              ))}
+              {incomes.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={3}
+                    style={{ color: "#888", textAlign: "center" }}
+                  >
+                    Keine Einnahmen vorhanden.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan={1} className={styles.sumRow}>
+                  Summe Einnahmen:
+                </td>
+                <td colSpan={2} className={styles.sumRow}>
+                  {incomeSum.toLocaleString("de-DE", {
+                    minimumFractionDigits: 2,
+                  })}
+                  €
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
 
-      {/* Einnahmen Modal */}
+      {/* Modal Einnahmen */}
       <Modal open={incomeModalOpen} onClose={() => setIncomeModalOpen(false)}>
         <form onSubmit={handleSaveIncome}>
           <h3>Neue Einnahme anlegen</h3>
@@ -204,9 +250,9 @@ function FinanceCheckDetailPage() {
       </Modal>
 
       {/* Ausgaben */}
-      <div style={{ marginTop: 30 }}>
+      <div style={{ marginTop: 36 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <h3 style={{ margin: 0 }}>Ausgaben</h3>
+          <h3 className={styles.subheading}>Ausgaben</h3>
           <button
             type="button"
             className="btn"
@@ -215,30 +261,66 @@ function FinanceCheckDetailPage() {
             Neue Ausgabe
           </button>
         </div>
-        <ul>
-          {expenses.map((exp) => (
-            <li key={exp.id}>
-              {exp.description} – {exp.amount}€
-              {exp.category && (
-                <span style={{ color: "#888" }}>
-                  {" "}
-                  [{categories.find((c) => c.id === exp.category)?.name || "-"}]
-                </span>
+        {/* Tabelle Ausgaben */}
+        <div className={styles.tableWrapper}>
+          <table className={styles.dataTable}>
+            <thead>
+              <tr>
+                <th>Beschreibung</th>
+                <th>Kategorie</th>
+                <th>Betrag (€)</th>
+                <th>Intervall</th>
+                <th>Bemerkung</th>
+              </tr>
+            </thead>
+            <tbody>
+              {expenses.map((exp) => {
+                const cat = exp.category
+                  ? categories.find((c) => c.id === exp.category)
+                  : null;
+                return (
+                  <tr key={exp.id}>
+                    <td>{exp.description}</td>
+                    <td>{cat ? cat.name : "-"}</td>
+                    <td>
+                      {Number(exp.amount).toLocaleString("de-DE", {
+                        minimumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td>{exp.interval}</td>
+                    <td>{exp.note || ""}</td>
+                  </tr>
+                );
+              })}
+              {expenses.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={5}
+                    style={{ color: "#888", textAlign: "center" }}
+                  >
+                    Keine Ausgaben vorhanden.
+                  </td>
+                </tr>
               )}
-              <span style={{ color: "#888" }}> ({exp.interval})</span>
-            </li>
-          ))}
-        </ul>
-        <b>
-          Summe Ausgaben:{" "}
-          {expenses
-            .reduce((acc, item) => acc + Number(item.amount), 0)
-            .toLocaleString("de-DE", { minimumFractionDigits: 2 })}
-          €
-        </b>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan={2} className={styles.sumRow}>
+                  Summe Ausgaben:
+                </td>
+                <td colSpan={3} className={styles.sumRow}>
+                  {expenseSum.toLocaleString("de-DE", {
+                    minimumFractionDigits: 2,
+                  })}
+                  €
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
 
-      {/* Ausgaben Modal */}
+      {/* Modal Ausgaben */}
       <Modal open={expenseModalOpen} onClose={() => setExpenseModalOpen(false)}>
         <form onSubmit={handleSaveExpense}>
           <h3>Neue Ausgabe anlegen</h3>
@@ -269,20 +351,24 @@ function FinanceCheckDetailPage() {
           </div>
           <div style={{ marginBottom: 18 }}>
             <label>Kategorie</label>
-            <select
-              required
-              value={newExpense.category_id}
-              onChange={(e) =>
-                setNewExpense({ ...newExpense, category_id: e.target.value })
-              }
-              style={{ width: "100%" }}
-            >
-              {categories.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
+            {categories.length === 0 ? (
+              <div style={{ color: "#d32f2f" }}>Keine Kategorien gefunden!</div>
+            ) : (
+              <select
+                required
+                value={newExpense.category_id}
+                onChange={(e) =>
+                  setNewExpense({ ...newExpense, category_id: e.target.value })
+                }
+                style={{ width: "100%" }}
+              >
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
           <div style={{ marginBottom: 18 }}>
             <label>Intervall</label>
@@ -316,29 +402,17 @@ function FinanceCheckDetailPage() {
       </Modal>
 
       {/* Bilanz */}
-      <div style={{ marginTop: 36 }}>
-        <h3>Bilanz:</h3>
+      <div className={styles.balanceBox}>
+        <h3 className={styles.balance}>Bilanz:</h3>
         <b
-          style={{
-            color:
-              incomes.reduce((a, i) => a + Number(i.amount), 0) -
-                expenses.reduce((a, i) => a + Number(i.amount), 0) >=
-              0
-                ? "#2e7d32"
-                : "#d32f2f",
-            fontSize: 22,
-          }}
+          className={
+            balance >= 0
+              ? styles.balanceValue
+              : `${styles.balanceValue} ${styles.deficit}`
+          }
         >
-          {incomes.reduce((a, i) => a + Number(i.amount), 0) -
-            expenses.reduce((a, i) => a + Number(i.amount), 0) >=
-          0
-            ? "Überschuss"
-            : "Defizit"}
-          :{" "}
-          {(
-            incomes.reduce((a, i) => a + Number(i.amount), 0) -
-            expenses.reduce((a, i) => a + Number(i.amount), 0)
-          ).toLocaleString("de-DE", {
+          {balance >= 0 ? "Überschuss" : "Defizit"}:{" "}
+          {balance.toLocaleString("de-DE", {
             minimumFractionDigits: 2,
           })}
           €

@@ -1,18 +1,31 @@
 .container {
-  width: 100vw;
+  width: 100%;
+  max-width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 0.7rem 2.2rem 0.7rem 2.2rem;
-  background: transparent;
+  padding: 1.1rem 2.2rem 1.1rem 2.2rem;
+  background: var(--main-box-bg);
   box-sizing: border-box;
-  position: relative;
+  min-height: 56px;
+  margin: 0 auto;
+  z-index: 20;
+  /* Light Mode Border-Top */
+  border-top: 2.5px solid #222;
+  box-shadow: 0 -2px 14px 0 rgba(0, 0, 0, 0.09);
+}
+
+[data-theme="dark"] .container {
+  border-top: 2.5px solid #353535;
+  box-shadow: 0 -3px 22px 0 rgba(18, 18, 18, 0.21);
+  background: #232323;
 }
 
 .left p {
   font-size: 16px;
   color: var(--footer-text-color);
   line-height: 1.4;
+  margin: 0;
 }
 
 .socials {

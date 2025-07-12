@@ -1,10 +1,11 @@
 .detailContainer {
-  max-width: 750px;
+  max-width: 1000px;
   margin: 42px auto 0 auto;
   background: var(--main-box-bg);
   border-radius: 1.6rem;
   box-shadow: 0 12px 60px 0 rgb(40 50 50 / 60%);
   padding: 40px 48px 36px 48px;
+  padding-bottom: 90px;
 }
 
 .heading {
@@ -31,15 +32,13 @@
   margin-bottom: 18px;
 }
 
-.list {
-  padding-left: 18px;
-  margin-bottom: 8px;
-}
-
 .sumRow {
   font-family: "Roboto Mono", monospace;
-  margin: 14px 0 4px 0;
-  font-size: 1.08rem;
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: var(--text-color);
+  text-align: right;
+  padding-top: 10px;
 }
 
 .balanceBox {
@@ -63,23 +62,93 @@
   color: #d32f2f;
 }
 
-/* Button-Styling */
-.actionBtn {
-  margin-left: 16px;
-  background: var(--btn-color);
-  color: var(--btn-text-color);
-  border: none;
-  border-radius: 10px;
-  padding: 6px 18px;
-  font-family: "Roboto Mono", monospace;
-  font-size: 1.08rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.16s, color 0.16s, transform 0.14s;
-  box-shadow: 0 1px 8px 0 rgba(80, 80, 80, 0.06);
+/* Tabelle */
+.tableWrapper {
+  overflow-x: auto;
+  margin: 16px 0 6px 0;
+  border-radius: 1rem;
 }
-.actionBtn:hover {
-  background: #6b705c;
-  color: #fff;
-  transform: translateY(-1px) scale(1.01);
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 16px;
+  background: var(--main-box-bg);
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.04rem;
+  box-shadow: 0 4px 26px 0 rgba(24, 24, 24, 0.07);
+  overflow: hidden;
+}
+
+.dataTable th,
+.dataTable td {
+  padding: 9px 11px;
+  text-align: left;
+  border-bottom: 1.2px solid var(--table-border);
+  transition: background 0.18s, color 0.18s;
+}
+
+.dataTable th {
+  background: var(--table-row-bg);
+  color: var(--text-color);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border-bottom: 2.3px solid var(--table-border);
+}
+
+.dataTable tr {
+  background: var(--table-row-bg);
+}
+
+/* Header absetzen im Hellmodus */
+[data-theme="light"] .dataTable th {
+  background: #f7f7f7 !important;
+  color: #111 !important;
+  border-bottom: 2.3px solid #222;
+}
+
+/* Zeilen abwechselnd einfärben */
+.dataTable tr:nth-child(even) {
+  background: var(--main-box-bg);
+}
+.dataTable tr:nth-child(odd) {
+  background: var(--table-row-bg);
+}
+
+/* Darkmode Overrides */
+[data-theme="dark"] .dataTable th {
+  background: #232323 !important;
+  color: #fff !important;
+  border-bottom: 2.3px solid #888;
+}
+[data-theme="dark"] .dataTable td {
+  color: #fff !important;
+  border-bottom: 1.2px solid #333 !important;
+}
+[data-theme="dark"] .dataTable tr:nth-child(even) {
+  background: #222;
+}
+[data-theme="dark"] .dataTable tr:nth-child(odd) {
+  background: #232323;
+}
+
+/* Lightmode: Tabellen lesbar */
+[data-theme="light"] .dataTable tr {
+  background: #fff;
+}
+[data-theme="light"] .dataTable td {
+  color: #222 !important;
+  border-bottom: 1.2px solid #222 !important;
+}
+
+/* Responsive Tabellen */
+@media (max-width: 600px) {
+  .detailContainer {
+    padding: 12px 0 8px 0;
+  }
+  .dataTable th,
+  .dataTable td {
+    padding: 7px 5px;
+    font-size: 0.98rem;
+  }
 }

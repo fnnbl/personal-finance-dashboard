@@ -5,7 +5,7 @@ export async function getIncomesByFinanceCheck(financeCheckId) {
   const { data, error } = await supabase
     .from("incomes")
     .select("*")
-    .eq("check_id", financeCheckId); // <-- angepasst
+    .eq("check_id", financeCheckId);
 
   if (error) throw error;
   return data;
@@ -13,19 +13,25 @@ export async function getIncomesByFinanceCheck(financeCheckId) {
 
 // Einzelne Einnahme anlegen
 export async function createIncome({
-  finance_check_id, // bleibt im Input-Objekt
+  finance_check_id,
   description,
   amount,
   interval,
 }) {
+  // Hole die User-ID vom aktuellen Supabase User
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   const { data, error } = await supabase
     .from("incomes")
     .insert([
       {
-        check_id: finance_check_id, // <-- Mapping auf Spaltennamen!
+        check_id: finance_check_id,
         description,
         amount,
         interval,
+        user_id: user.id, // <<<<<<<<<<<<<<<<<<<
       },
     ])
     .single();

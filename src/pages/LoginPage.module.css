@@ -1,12 +1,23 @@
 .bg {
-  min-height: 100vh;
-  background: var(--background-color);
+  flex: 1;             /* DAS IST ENTSCHEIDEND! */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  background: var(--background-color);
   position: relative;
   padding-top: 64px;
+  width: 100%;
+  min-height: 0;
+}
+
+.centeredContainer {
+  flex: 1; /* WICHTIG: damit Footer nach unten gedrückt wird */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 90px; /* Abstand zum Footer */
 }
 
 .themeSwitch {
@@ -44,14 +55,6 @@
     margin-top: 56px;
     margin-bottom: 54px;
   }
-}
-
-.centeredContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0;
 }
 
 .form {

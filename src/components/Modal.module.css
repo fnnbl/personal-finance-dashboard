@@ -1,3 +1,8 @@
+.modalContainer {
+  overflow: visible !important;
+  max-height: none !important;
+}
+
 .overlay {
   position: fixed;
   top: 0;

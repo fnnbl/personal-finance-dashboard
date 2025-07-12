@@ -1,10 +1,10 @@
+import Navbar from "../components/Navbar";
+import Footer from "../sections/Footer/Footer";
 import { Outlet } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./sections/Footer/Footer";
-import { useTheme } from "./common/ThemeContext";
-import { useAuth } from "./common/AuthContext";
+import { useTheme } from "../common/ThemeContext.jsx";
+import { useAuth } from "../common/AuthContext.jsx";
 
-function App() {
+function AppLayout() {
   const { theme, toggleTheme } = useTheme();
   const { logout } = useAuth();
 
@@ -19,4 +19,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppLayout;

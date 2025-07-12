@@ -12,30 +12,33 @@ function Footer() {
   const linkedinIcon = theme === "dark" ? linkedinDark : linkedinLight;
 
   return (
-    <footer className={styles.container}>
-      <div className={styles.left}>
-        <p>
-          &copy; 2024 Fynn Blaurock. <br />
-          All rights reserved.
-        </p>
-      </div>
-      <div className={styles.socials}>
-        <a
-          href="https://github.com/fnnbl"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-        >
-          <img src={githubIcon} alt="GitHub" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/fynn-blaurock-37723b218/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-        >
-          <img src={linkedinIcon} alt="LinkedIn" />
-        </a>
+    <footer style={{ width: "100vw" }}>
+      <div className={styles.divider} aria-hidden />
+      <div className={styles.container}>
+        <div className={styles.left}>
+          <p>
+            &copy; 2024 Fynn Blaurock. <br />
+            All rights reserved.
+          </p>
+        </div>
+        <div className={styles.socials}>
+          <a
+            href="https://github.com/fnnbl"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <img src={githubIcon} alt="GitHub" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/fynn-blaurock-37723b218/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img src={linkedinIcon} alt="LinkedIn" />
+          </a>
+        </div>
       </div>
     </footer>
   );
