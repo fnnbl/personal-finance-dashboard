@@ -4,7 +4,8 @@ import { AuthProvider } from "./common/AuthContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
 import LoginPage from "./pages/LoginPage";
-import DashboardPage from "./pages/DashboardPage"; // <--- NEU!
+import RegisterPage from "./pages/RegisterPage"; // NEU
+import DashboardPage from "./pages/DashboardPage";
 import FinanceChecksPage from "./pages/FinanceChecksPage";
 import FinanceCheckDetailPage from "./pages/FinanceCheckDetailPage";
 import FinanceCheckCreatePage from "./pages/FinanceCheckCreatePage";
@@ -29,7 +30,16 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 </>
               }
             />
-            {/* Alle anderen Seiten im AppLayout */}
+            <Route
+              path="/register"
+              element={
+                <>
+                  <RegisterPage />
+                  <Footer />
+                </>
+              }
+            />
+            {/* Geschützte App-Seiten im Layout */}
             <Route path="/" element={<AppLayout />}>
               <Route
                 index
@@ -63,7 +73,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                   </ProtectedRoute>
                 }
               />
-              {/* Weitere Seiten */}
             </Route>
           </Routes>
         </BrowserRouter>

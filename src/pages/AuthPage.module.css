@@ -1,5 +1,5 @@
 .bg {
-  flex: 1;             /* DAS IST ENTSCHEIDEND! */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,12 +12,12 @@
 }
 
 .centeredContainer {
-  flex: 1; /* WICHTIG: damit Footer nach unten gedrückt wird */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 0;
-  margin-bottom: 90px; /* Abstand zum Footer */
+  margin-bottom: 90px;
 }
 
 .themeSwitch {
@@ -33,11 +33,12 @@
   cursor: pointer;
   transition: transform 0.15s;
 }
+
 .themeIcon:hover {
   transform: scale(1.13);
 }
 
-.loginTitle {
+.pageTitle {
   font-family: "Rubik", sans-serif;
   font-size: 2.7rem;
   font-weight: 800;
@@ -50,7 +51,7 @@
 }
 
 @media (min-width: 800px) {
-  .loginTitle {
+  .pageTitle {
     font-size: 3.4rem;
     margin-top: 56px;
     margin-bottom: 54px;
@@ -63,11 +64,14 @@
   padding: 2.6rem 2.4rem 2.1rem 2.4rem;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   min-width: 320px;
   max-width: 370px;
   gap: 1rem;
   border: none;
   box-shadow: 0 20px 100px 0 rgb(30, 40, 40);
+  height: auto;
 }
 
 [data-theme="dark"] .form {
@@ -85,6 +89,20 @@
   font-weight: 800;
   margin: 0 0 1rem 0;
   text-align: center;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.buttonGroup {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
 }
 
 input {
@@ -125,6 +143,7 @@ input:focus {
   font-family: "Roboto Mono", monospace;
   font-size: 1rem;
 }
+
 .registerLink {
   color: var(--btn-color);
   margin-left: 0.35rem;
@@ -133,17 +152,11 @@ input:focus {
   font-weight: 700;
   cursor: pointer;
   transition: color 0.15s;
+  font-size: inherit;
 }
+
+
 .registerLink:hover {
   color: #43a047;
 }
 
-@media (min-width: 600px) {
-  .form {
-    min-width: 360px;
-    max-width: 410px;
-  }
-  .loginTitle {
-    font-size: 2.8rem;
-  }
-}
