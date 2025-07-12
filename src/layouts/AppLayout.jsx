@@ -1,8 +1,8 @@
 import Navbar from "../components/Navbar";
 import Footer from "../sections/Footer/Footer";
 import { Outlet } from "react-router-dom";
-import { useTheme } from "../common/ThemeContext.jsx";
-import { useAuth } from "../common/AuthContext.jsx";
+import { useTheme } from "../contexts/ThemeContext.jsx";
+import { useAuth } from "../auth/AuthContext.jsx";
 
 function AppLayout() {
   const { theme, toggleTheme } = useTheme();

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "../auth/supabaseClient";
-import styles from "./AuthPage.module.css";
-import { useTheme } from "../common/ThemeContext";
+import styles from "../styles/AuthPage.module.css";
+import { useTheme } from "../contexts/ThemeContext";
 import sun from "../assets/sun.svg";
 import moon from "../assets/moon.svg";
 

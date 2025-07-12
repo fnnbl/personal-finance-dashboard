@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../common/AuthContext";
+import { useAuth } from "../auth/AuthContext";
 import { createFinanceCheck } from "../api/crud/crud_financeCheck";
 import { useNavigate } from "react-router-dom";
 

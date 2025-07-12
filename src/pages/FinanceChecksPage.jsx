@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getFinanceChecksByUser } from "../api/crud/crud_financeCheck";
-import { useAuth } from "../common/AuthContext";
+import { useAuth } from "../auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./FinanceChecksPage.module.css";
 

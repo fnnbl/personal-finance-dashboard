@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useAuth } from "../common/AuthContext";
+import { useAuth } from "../auth/AuthContext";
 import { Navigate, Link } from "react-router-dom";
-import { useTheme } from "../common/ThemeContext";
+import { useTheme } from "../contexts/ThemeContext";
 import sun from "../assets/sun.svg";
 import moon from "../assets/moon.svg";
-import styles from "./AuthPage.module.css";
+import styles from "../styles/AuthPage.module.css";
 
 function LoginPage() {
   const { user, login, loading } = useAuth();

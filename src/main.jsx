@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { AuthProvider } from "./common/AuthContext";
+import { AuthProvider } from "./auth/AuthContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
 import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage"; // NEU
+import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import FinanceChecksPage from "./pages/FinanceChecksPage";
 import FinanceCheckDetailPage from "./pages/FinanceCheckDetailPage";
 import FinanceCheckCreatePage from "./pages/FinanceCheckCreatePage";
-import { ProtectedRoute } from "./common/ProtectedRoute";
-import { ThemeProvider } from "./common/ThemeContext";
+import ProtectedRoute from "./auth/ProtectedRoute";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import Footer from "./sections/Footer/Footer";
 import "./App.css";
 

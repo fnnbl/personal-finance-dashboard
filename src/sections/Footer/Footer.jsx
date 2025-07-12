@@ -1,5 +1,5 @@
 import styles from "./FooterStyles.module.css";
-import { useTheme } from "../../common/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import githubDark from "../../assets/github-dark.svg";
 import githubLight from "../../assets/github-light.svg";
 import linkedinDark from "../../assets/linkedin-dark.svg";
