@@ -22,18 +22,18 @@ html, body, #root {
 }
 
 :root {
-  --background-color: #fff;
+  --background-color: #bfbfbf;
   --btn-color: #222;
   --btn-text-color: #fff;
   --project-card-bg: #ffffff00;
   --section-bg: #f9f9f9;
-  --section-header-bg: #efefef;
+  --section-header-bg: #bfbfbf;
   --text-color: #222;
   --form-text-color: #555;
-  --footer-text-color: #888;
+  --footer-text-color: #000000;
   --navlinks-bg: #e3f2fd;
   --navlinks-border: #b0bec5;
-  --main-box-bg: #fff;
+  --main-box-bg: #bfbfbf;
   --input-bg: #fff;
 
   /* Tabelle/Tabellen-Zeilen */
@@ -52,7 +52,7 @@ html, body, #root {
   --section-header-bg: #303030;
   --text-color: #fff;
   --form-text-color: #fff;
-  --footer-text-color: #bbb;
+  --footer-text-color: #bfbfbf;
   --navlinks-bg: #263238;
   --navlinks-border: #37474f;
   --main-box-bg: #323232;
